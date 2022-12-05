@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <h2>YS Saver</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="text" name="given-url" value="{{url}}" placeholder="enter url...">
+            <button type="submit" name="fetch-vid" value="fetch-vid">Proceed</button>
+
+            <br>
+               <h3>{{vidTitle}}</h3>
+               <img src="{{vidThumbnail}}" />
+            <br>
+
+            {% for x in stream %}
+             {{ x.resolution }} <button type="submit" name="download-vid" value="{{ forloop.counter}}">Download</button>
+            {% endfor %}
+
+            <br><br>
+        </form>
+        
+    </body>
+</html>
